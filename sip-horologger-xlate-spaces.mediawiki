@@ -1,0 +1,40 @@
+  SIP: X
+  Title: Appropriate .spaces top level DNS domain
+  Author: horologger (horologger@protonmail.com)
+  Status: Draft
+  Type: Standards Track
+  Created: 2025-09-24
+  License: BSD-2-Clause
+  Discussions-To: [TBD]
+
+==Abstract==
+
+Abstract -- A short (~200 word) description of the technical issue being addressed.
+
+This document specifies a mechanism for translating ICANN DNS domain names into @spaces names.
+
+==Motivation==
+
+Motivation -- The motivation should clearly explain why the existing protocol is inadequate to address the problem that the SIP solves.
+
+The spaces protocol '@' delimiter confuses client applications that validate hostnames prior to passing them along for DNS resolution.
+
+==Specification==
+
+Specification -- The technical specification should describe the syntax and semantics of any new feature. The specification should be detailed enough to allow competing, interoperable implementations for any of the current Spaces platforms.
+
+==Rationale==
+
+Rationale -- The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work.
+
+==Backwards Compatibility==
+
+Backwards compatibility -- All SIPs that introduce backward incompatibilities must include a section describing these incompatibilities and their severity. The SIP must explain how the author proposes to deal with these incompatibilities.
+
+==Reference Implementation==
+
+Reference implementation -- The reference implementation must be completed before any SIP is given the status "Final", but it need not be completed before the SIP is accepted.
+
+==Copyright==
+
+This SIP is licensed under the BSD-2-Clause License.
