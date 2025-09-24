@@ -23,7 +23,7 @@ The spaces protocol '@' delimiter confuses client applications that validate hos
 
 Specification -- The technical specification should describe the syntax and semantics of any new feature. The specification should be detailed enough to allow competing, interoperable implementations for any of the current Spaces platforms.
 
-<syntaxhighlight lang="javascript">
+<source lang="javascript">
 function translateHostname(hostname) {
     // Force the hostname to lowercase
     hostname = hostname.toLowerCase();
@@ -55,7 +55,7 @@ function translateHostname(hostname) {
         return { type: 'dns', name: hostname };
     }
 }
-</syntaxhighlight>
+</source>
 
 
 ==Rationale==
