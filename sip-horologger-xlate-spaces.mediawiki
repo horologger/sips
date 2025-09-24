@@ -11,7 +11,7 @@
 
 Abstract -- A short (~200 word) description of the technical issue being addressed.
 
-This document specifies a mechanism for translating ICANN DNS domain names into @spaces names.
+This document specifies a mechanism for translating ICANN DNS domain names into @spaces names.  The top-level domain name 'spaces' does not exist to date as a valid domain.  If a DNS proxy server would service a .spaces domain name as a @spaces name using the spaces protocol, clients that use DNS resolution would not need to be altered to perform spaces name resolution.
 
 ==Motivation==
 
@@ -22,6 +22,17 @@ The spaces protocol '@' delimiter confuses client applications that validate hos
 ==Specification==
 
 Specification -- The technical specification should describe the syntax and semantics of any new feature. The specification should be detailed enough to allow competing, interoperable implementations for any of the current Spaces platforms.
+
+Begin Pseudo-code:
+
+Force the nostname to_lowercase.
+Scan the hostname from right to left for the rightmost '.' and place it in top_string.
+if top_string == "spaces" then strip the rigthmost '.spaces' and for the preceeding '.' if exists.  If it doesn't exist then an error.
+replace the '.' with '@' and process the resulting hostname as a spaces name.
+else pass it to the forwarding DNS server for resolution.
+
+End Pseudo-code:
+
 
 ==Rationale==
 
