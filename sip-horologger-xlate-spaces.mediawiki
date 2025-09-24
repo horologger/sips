@@ -23,15 +23,39 @@ The spaces protocol '@' delimiter confuses client applications that validate hos
 
 Specification -- The technical specification should describe the syntax and semantics of any new feature. The specification should be detailed enough to allow competing, interoperable implementations for any of the current Spaces platforms.
 
-Begin Pseudo-code:
-
-Force the nostname to_lowercase.
-Scan the hostname from right to left for the rightmost '.' and place it in top_string.
-if top_string == "spaces" then strip the rigthmost '.spaces' and for the preceeding '.' if exists.  If it doesn't exist then an error.
-replace the '.' with '@' and process the resulting hostname as a spaces name.
-else pass it to the forwarding DNS server for resolution.
-
-End Pseudo-code:
+<syntaxhighlight lang="javascript">
+function translateHostname(hostname) {
+    // Force the hostname to lowercase
+    hostname = hostname.toLowerCase();
+    
+    // Scan the hostname from right to left for the rightmost '.' and place it in top_string
+    const lastDotIndex = hostname.lastIndexOf('.');
+    if (lastDotIndex === -1) {
+        throw new Error('Invalid hostname: no top-level domain found');
+    }
+    
+    const topString = hostname.substring(lastDotIndex + 1);
+    
+    // if top_string == "spaces" then strip the rightmost '.spaces' and for the preceding '.' if exists
+    if (topString === "spaces") {
+        // Strip the rightmost '.spaces'
+        const withoutSpaces = hostname.substring(0, lastDotIndex);
+        
+        // Check for preceding '.' if exists. If it doesn't exist then an error
+        const secondLastDotIndex = withoutSpaces.lastIndexOf('.');
+        if (secondLastDotIndex === -1) {
+            throw new Error('Invalid spaces hostname: no subdomain found');
+        }
+        
+        // Replace the '.' with '@' and process the resulting hostname as a spaces name
+        const spacesName = withoutSpaces.substring(0, secondLastDotIndex) + '@' + withoutSpaces.substring(secondLastDotIndex + 1);
+        return { type: 'spaces', name: spacesName };
+    } else {
+        // Pass it to the forwarding DNS server for resolution
+        return { type: 'dns', name: hostname };
+    }
+}
+</syntaxhighlight>
 
 
 ==Rationale==
